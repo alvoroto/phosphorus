@@ -12,6 +12,7 @@ const path         = require('path');
 const session    = require("express-session");
 const MongoStore = require('connect-mongo')(session);
 const flash      = require("connect-flash");
+const cors       = require('cors');
     
 
 mongoose
@@ -73,7 +74,11 @@ app.use(session({
 }))
 app.use(flash());
 require('./passport')(app);
-    
+
+app.use(cors({
+  credentials: true,
+  origin: ['http://localhost:3000']
+}));
 
 const index = require('./routes/index');
 app.use('/', index);
