@@ -21,6 +21,17 @@ export default class Game extends Component{
             width:window.innerWidth,
             height:window.innerHeight
         }
+
+        this.keyCodes = {
+            TOP_KEY: 38,
+            SPACE: 32,
+            LEFT_KEY: 37,
+            RIGHT_KEY: 39,
+            D_KEY: 68,
+            F_KEY: 70
+        }
+
+        this.keys=[]
         
         
     }
@@ -43,7 +54,6 @@ export default class Game extends Component{
             
             // add a function to adjust the canvas size if the screen is resized
             window.onresize = function(event) {
-                console.log("ei")
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
             };
@@ -53,16 +63,58 @@ export default class Game extends Component{
                 canvas: canvas,
                 engine: engine,
                 options: {
-                    width: window.innerWidth,
-                    height: window.innerHeight,
                     wireframes: false
                 }
              });
-            var box = Bodies.rectangle(this.convertSize(5), this.convertSize(0), this.convertSize(1), this.convertSize(1));
+            var box = Bodies.rectangle(this.convertSize(5), this.convertSize(8), this.convertSize(1), this.convertSize(1));
+            box.friction = 0;
+            box.frictionAir = 0;
+            box.restitution = 0;
             var ground = Bodies.rectangle(this.convertSize(12), this.convertSize(12), this.convertSize(23), this.convertSize(1), { isStatic: true });
             World.add(engine.world, [box, ground]);
             Engine.run(engine);
             Render.run(render);
+
+            //Body.setVelocity( box, {x: 10, y:0});
+            document.body.addEventListener("keydown", (e) => {
+                this.keys[e.keyCode] = true;
+                if (e.keyCode == this.keyCodes.SPACE) {
+                    Body.applyForce( box, {x: box.position.x, y: box.position.y}, {x: 0, y: -0.05});
+                }
+            });
+            document.body.addEventListener("keyup",(e) => {
+                this.keys[e.keyCode] = false;
+            });
+
+            Events.on(engine, "beforeTick", (event) => {
+                console.log(box.force.x)
+                if (this.keys[38]) {
+                    //Body.setVelocity( box, {x: 10, y:box.velocity.y});
+                }
+                if (this.keys[37]) {
+                    console.log(box.velocity.x)
+                    if(box.velocity.x>-1){
+                        Body.applyForce( box, {x: box.position.x, y: box.position.y}, {x: -0.005, y: 0});
+                    }
+                   
+                    //Body.setVelocity( box, {x: -10, y:box.velocity.y});
+                } else if (this.keys[39]) {
+                    console.log(box.velocity.x)
+                    if(box.velocity.x<1){
+                        Body.applyForce( box, {x: box.position.x, y: box.position.y}, {x: 0.005, y: 0});
+                    }
+                    //Body.setVelocity( box, {x: 10, y:0});
+                } else {
+                    Body.applyForce( box, {x: box.position.x, y: box.position.y}, {x: -box.force.x, y: 0});
+                }
+                
+            });
+
+
+            // if(this.keys[this.keyCodes.RIGHT_KEY]) {
+            //     Body.setVelocity( box, {x: 10, y:0});
+            // }
+
         }
     }
 
