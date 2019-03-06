@@ -85,6 +85,12 @@ app.use('/', index);
 
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
+
+const levelRoutes = require('./routes/level');
+app.use('/level', levelRoutes);
+
+const adminRoutes = require('./routes/admin');
+app.use('/admin', adminRoutes);
       
 app.use((req, res, next) => {
   res.sendFile(__dirname + "/public/index.html");

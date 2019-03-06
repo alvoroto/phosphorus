@@ -8,6 +8,8 @@ import AuthService from './components/AuthService/authService';
 import Navbar from './components/Navbar/Navbar';
 import Signup from './components/Auth/Signup';
 import Login from './components/Auth/Login';
+import Piece from './components/Piece/Piece';
+import LevelCreator from './components/LevelCreator/LevelCreator';
 // import ProjectDetails from './components/projects/ProjectDetails';
 
 
@@ -65,6 +67,7 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
+            <LevelCreator></LevelCreator>
           </header>
         </div>
       );

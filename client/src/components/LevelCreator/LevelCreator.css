@@ -1,0 +1,3 @@
+.container {
+    grid-template-columns: repeat(--totalCol, 1fr);
+}

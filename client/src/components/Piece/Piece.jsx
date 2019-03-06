@@ -1,0 +1,155 @@
+import React, { Component } from 'react';
+import service from '../../api/pieceService';
+
+class Piece extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            name: "",
+            type: "",
+            src: "",
+            animated:false,
+            frames:0,
+            framesTo:0,
+            framesFrom:0,
+            frameIndex:0,
+            framesX:0,
+            framesY:0,
+            framesW:0,
+            framesH:0,
+            w:1,
+            h:1
+        };
+    }
+
+    handleChange = e => {  
+        const { name, value } = e.target;
+        this.setState({ [name]: value });
+    }
+
+    handleChecked = e => {  
+        console.log(e.target.name)
+        this.setState({ [e.target.name]: e.target.checked });
+    }
+
+
+  // this method handles just the file upload
+  handleFileUpload = e => {
+    console.log("The file to be uploaded is: ", e.target.files[0]);
+
+    const uploadData = new FormData();
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new thing in '/api/things/create' POST route
+    uploadData.append("imageUrl", e.target.files[0]);
+    
+    service.handleUpload(uploadData)
+    .then(response => {
+        // console.log('response is: ', response);
+        // after the console.log we can see that response carries 'secure_url' which we can use to update the state 
+        this.setState({ src: response.secure_url });
+      })
+      .catch(err => {
+        console.log("Error while uploading the file: ", err);
+      });
+    }
+
+    // this method submits the form
+    handleSubmit = e => {
+        e.preventDefault();
+
+        service.saveNewThing(this.state)
+        .then(res => {
+            console.log('added: ', res);
+            // here you would redirect to some other page 
+        })
+        .catch(err => {
+            console.log("Error while adding the thing: ", err);
+        });
+    }  
+    render() {
+        return (
+          <div>
+            <h2>New Thing</h2>
+            <form onSubmit={e => this.handleSubmit(e)}>
+                <label>Name</label>
+                <input 
+                    type="text" 
+                    name="name" 
+                    value={ this.state.name } 
+                    onChange={ e => this.handleChange(e)} />
+                <label>Type</label>
+                <select name="type" onChange={ e => this.handleChange(e)}>
+                    <option value="BACK">Background</option>
+                    <option value="PLATFORM">Platform</option>
+                    <option value="FRONT">Front</option>
+                    <option value="IMG">Image</option>
+                    <option value="PLAYER">Player</option>
+                    <option value="ITEM">Item</option>
+                </select>
+                <input 
+                    type="file" 
+                    onChange={(e) => this.handleFileUpload(e)} /> 
+
+                <label>Is animated</label>
+                <input 
+                    type="checkbox" 
+                    name="animated" 
+                    onChange={ e => this.handleChecked(e)} />
+                <div style={{display: this.state.animated ? '' : 'none' }} >
+                    <label>Frames</label>
+                    <input 
+                        type="number" 
+                        name="frames" 
+                        value={ this.state.frames } 
+                        onChange={ e => this.handleChange(e)} />
+                    <label>Frames To</label>
+                    <input 
+                        type="number" 
+                        name="framesTo" 
+                        value={ this.state.framesTo } 
+                        onChange={ e => this.handleChange(e)} />
+                    <label>Frames From</label>
+                    <input 
+                        type="number" 
+                        name="framesFrom" 
+                        value={ this.state.framesFrom } 
+                        onChange={ e => this.handleChange(e)} />
+                    <label>Frame Index</label>
+                    <input 
+                        type="number" 
+                        name="frameIndex" 
+                        value={ this.state.frameIndex } 
+                        onChange={ e => this.handleChange(e)} />
+                    <label>Frames X</label>
+                    <input 
+                        type="number" 
+                        name="framesX" 
+                        value={ this.state.framesX } 
+                        onChange={ e => this.handleChange(e)} />
+                    <label>Frames Y</label>
+                    <input 
+                        type="number" 
+                        name="framesY" 
+                        value={ this.state.framesY } 
+                        onChange={ e => this.handleChange(e)} />
+                    <label>Frames W</label>
+                    <input 
+                        type="text" 
+                        name="framesW" 
+                        value={ this.state.framesW } 
+                        onChange={ e => this.handleChange(e)} />
+                    <label>Frames H</label>
+                    <input 
+                        type="text" 
+                        name="framesH" 
+                        value={ this.state.framesH } 
+                        onChange={ e => this.handleChange(e)} />
+                </div>
+                <button type="submit">Save new Piece</button>
+            </form>
+          </div>
+        );
+    }
+}
+
+export default Piece;

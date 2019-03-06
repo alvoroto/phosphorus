@@ -2,12 +2,9 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const imagesSchema = new Schema({
-    name: String,
-    src : String,
     x : Number,
     y : Number,
-    w : Number,
-    h : Number
+    piece: {type: Schema.Types.ObjectId, ref: 'Piece'}
 }, {
   timestamps: {
     createdAt: 'created_at',

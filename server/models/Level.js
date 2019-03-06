@@ -3,6 +3,7 @@ const Schema   = mongoose.Schema;
 
 const levelSchema = new Schema({
     name: String,
+    creator: {type: Schema.Types.ObjectId, ref: 'User'},
     platforms:[
         {type: Schema.Types.ObjectId, ref: 'Platform'},
     ],

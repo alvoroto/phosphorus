@@ -2,22 +2,11 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const platformSchema = new Schema({
-    name: String,
-    src : String,
     x : Number,
     y : Number,
-    w : Number,
-    h : Number,
     isDashBreakable : Boolean,
     isDownBreakable : Boolean,
-    frames : Number,
-    framesTo : Number,
-    framesFrom : Number,
-    framesIndex : Number,
-    framesX : Number,
-    framesY : Number,
-    framesW : Number,
-    framesH : Number
+    piece: {type: Schema.Types.ObjectId, ref: 'Piece'}
 }, {
   timestamps: {
     createdAt: 'created_at',

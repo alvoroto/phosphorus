@@ -3,7 +3,10 @@ const Schema   = mongoose.Schema;
 
 const userSchema = new Schema({
   username: String,
-  password: String
+  password: String,
+  levels:[
+    {type: Schema.Types.ObjectId, ref: 'Level'},
+],
 }, {
   timestamps: {
     createdAt: 'created_at',
