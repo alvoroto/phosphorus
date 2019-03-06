@@ -60,5 +60,12 @@ router.get('/new', (req, res, next)=>{
   .catch(err => res.status(500).json({data: err}));
 });
 
+router.get('/pieces', (req, res, next)=>{
+  Piece.find({ type: req.query.type})
+  .then(pieces=>{
+    res.status(200).json({data: {pieces}})
+  })
+});
+
 
 module.exports = router;

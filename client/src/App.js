@@ -67,6 +67,7 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
+            <Piece></Piece>
             <LevelCreator></LevelCreator>
           </header>
         </div>

@@ -12,16 +12,13 @@ const passport = require('passport');
 // include CLOUDINARY:
 const uploader = require('../configs/cloudinary-setup');
 
-router.post('/upload', uploader.single("imageUrl"), (req, res, next) => {
-    console.log("ou")
-    if (!req.file) {
-      next(new Error('No file uploaded!'));
-      return;
-    }
-    // get secure_url from the file object and save it in the 
-    // variable 'secure_url', but this can be any name, just make sure you remember to use the same in frontend
-    res.json({ secure_url: req.file.secure_url });
-})
+
+//actual write to cloudinary via the middleware specified in ../config/cloudinary.js
+router.post('/upload', uploader.single('imageUrl'), (req, res, next) => {
+    
+    res.json({url: req.file.url});
+  
+});
 
 
 

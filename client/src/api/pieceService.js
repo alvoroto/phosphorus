@@ -17,9 +17,15 @@ const errorHandler = err => {
 export default {
   service,
 
-  handleUpload (theFile) {
-    // console.log('file in service: ', theFile)
-    return service.post('/admin/upload', theFile)
+  handleUpload (file) {
+    const formData = new FormData();
+    formData.append("imageUrl", file)
+    return service
+      .post('/admin/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
       .then(res => res.data)
       .catch(errorHandler);
   },
