@@ -38,7 +38,7 @@ router.post('/save', (req,res,next) => {
   })
 })
 
-router.get('/new', (req, res, next)=>{
+router.get('/start', (req, res, next)=>{
   Background.find().populate("piece")
   .then(backgrounds => {
     Images.find().populate("piece")
@@ -64,6 +64,22 @@ router.get('/pieces', (req, res, next)=>{
     res.status(200).json({data: {pieces}})
   })
 });
+
+router.get('/list', (req, res, next)=>{
+  Level.find()
+  .then(levels=>{
+    console.log(levels)
+    res.status(200).json({data:{levels}})
+  })
+});
+
+router.get('/:id', (req, res, next)=>{
+  Level.findById(req.params.id)
+      .populate("creator","platforms.piece","collectableItems.piece","damageItems.piece","powerItems.piece","frontImages.piece","backImages.piece")
+  .then(xperience => {
+
+  })
+})
 
 
 module.exports = router;

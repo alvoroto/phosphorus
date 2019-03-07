@@ -3,12 +3,12 @@ import Player from "./Player";
 import Level from "./Level";
 import Platform from "./Platform";
 import Item from "./Item";
-import totalGame from "./data.js";
 import Images from "./Images";
 
 
 export default class GameController {
     constructor(){
+        this.totalGame = undefined;
         this.canvas = undefined;
         this.ctx = undefined;
         this.fps = 100;
@@ -36,8 +36,8 @@ export default class GameController {
     /*
     Inicio del juego
     */
-    init(canvasId) {
-        
+    init(canvasId, totalGame) {
+        this.totalGame = totalGame;
         this.canvas = canvasId;
         this.ctx = this.canvas.getContext("2d");
         this.fps = 60;
@@ -212,7 +212,7 @@ export default class GameController {
     }
 
     loadData(){
-        totalGame.forEach(function(level){
+        this.totalGame.forEach(function(level){
             var nivel = new Level(this)
 
             //platforms
@@ -269,49 +269,49 @@ export default class GameController {
             var nivel = new Level(this)
 
             //platforms
-            totalGame[this.currentLevel].platforms.forEach(function(platform){
+            this.totalGame[this.currentLevel].platforms.forEach(function(platform){
                 nivel.platforms.push(new Platform(this, platform.img, platform.x, platform.y, platform.w, platform.h, platform.isDashBreakable, platform.isDownBreakable));
             }.bind(this))
            
             //collectable items
-            totalGame[this.currentLevel].collectableItems.forEach(function(collectableItem){
+            this.totalGame[this.currentLevel].collectableItems.forEach(function(collectableItem){
                 nivel.collectableItems.push(new Item(this.ctx, collectableItem.src, collectableItem.x, collectableItem.y, collectableItem.w, collectableItem.h, collectableItem.isActive))
             }.bind(this))
 
              //damage items
-            if(totalGame[this.currentLevel].damageItems){
-                totalGame[this.currentLevel].damageItems.forEach(function(damageItem){
+            if(this.totalGame[this.currentLevel].damageItems){
+                this.totalGame[this.currentLevel].damageItems.forEach(function(damageItem){
                     nivel.damageItems.push(new Item(this.ctx, damageItem.src, damageItem.x, damageItem.y, damageItem.w, damageItem.h, damageItem.isActive, damageItem.damage))
                 }.bind(this))
             }
 
              //power items
-             if(totalGame[this.currentLevel].powerItems){
-                totalGame[this.currentLevel].powerItems.forEach(function(powerItem){
+             if(this.totalGame[this.currentLevel].powerItems){
+                this.totalGame[this.currentLevel].powerItems.forEach(function(powerItem){
                     nivel.powerItems.push(new Item(this.ctx, powerItem.src, powerItem.x, powerItem.y, powerItem.w, powerItem.h, powerItem.isActive, powerItem.damage, powerItem.type))
                 }.bind(this))
             }
 
              //back images
-             if(totalGame[this.currentLevel].backImages){
-                totalGame[this.currentLevel].backImages.forEach(function(backImage){
+             if(this.totalGame[this.currentLevel].backImages){
+                this.totalGame[this.currentLevel].backImages.forEach(function(backImage){
                     nivel.backImages.push(new Images(this.ctx, backImage.x, backImage.y, backImage.w, backImage.h, backImage.src))
                 }.bind(this))
             }
 
             //front images
-            if(totalGame[this.currentLevel].frontImages){
-                totalGame[this.currentLevel].frontImages.forEach(function(frontImage){
+            if(this.totalGame[this.currentLevel].frontImages){
+                this.totalGame[this.currentLevel].frontImages.forEach(function(frontImage){
                     nivel.frontImages.push(new Images(this.ctx, frontImage.x, frontImage.y, frontImage.w, frontImage.h, frontImage.src))
                 }.bind(this))
             }
 
             //background
-            nivel.background = new Background(this.ctx, this.canvas.width, this.canvas.height, totalGame[this.currentLevel].background.src);
+            nivel.background = new Background(this.ctx, this.canvas.width, this.canvas.height, this.totalGame[this.currentLevel].background.src);
 
             //player
-            nivel.playerX = totalGame[this.currentLevel].player.x;
-            nivel.playerY = totalGame[this.currentLevel].player.y;
+            nivel.playerX = this.totalGame[this.currentLevel].player.x;
+            nivel.playerY = this.totalGame[this.currentLevel].player.y;
 
 
             this.levels[this.currentLevel]=nivel;

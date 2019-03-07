@@ -7,6 +7,7 @@ class LevelCreator extends Component {
         super(props)
         this.state = {
             level:{
+                name: "",
                 creator : this.props.loggedInUser._id,
                 platforms : [],
                 collectableItems : [],
@@ -27,6 +28,17 @@ class LevelCreator extends Component {
     handleChange = e => {  
         const { name, value } = e.target;
         this.setState({ [name]: value });
+    }
+
+    handleLevelChange = e => {  
+        const { name, value } = e.target;
+        this.setState({
+            ...this.state,
+            level:{
+                ...this.state.level,
+                [name]: value
+            }
+        });
     }
 
     handleSelectChange = e => {  
@@ -58,14 +70,14 @@ class LevelCreator extends Component {
     }
     
     mouseLeave(e) {
-        if(!e.target.isSelected){
+        if(!e.target.selected){
             e.target.style.backgroundImage = ``
         }
     }
 
     mouseClick(e) {
         if(this.state.selectedPiece.type){
-            e.target.isSelected=true
+            e.target.selected=true
             e.target.style.backgroundImage = `url(${this.state.selectedPiece.src})`;
             console.log(this.state)
             switch(this.state.selectedPiece.type) {
@@ -197,7 +209,7 @@ class LevelCreator extends Component {
             resArrY=[]
             for(var j=0; j<arrW; j++){
                 resArrY.push(
-                <div key={i+"-"+j} className="cell" row={i} column={j}  isSelected={false} style={cellStyle}
+                <div key={i+"-"+j} className="cell" row={i} column={j}  selected={false} style={cellStyle}
                 onMouseEnter={e=>this.mouseEnter(e)} onMouseLeave={e => this.mouseLeave(e)}
                 onClick={e=>this.mouseClick(e)}>
                 </div>)
@@ -221,6 +233,12 @@ class LevelCreator extends Component {
 
         return (
           <div className="LevelCreator" id="LevelCreator">
+            <label>Level Name</label>
+            <input 
+                type="text" 
+                name="name" 
+                value={ this.state.level.name } 
+                onChange={ e => this.handleLevelChange(e)} />
             <form onSubmit={e => this.handleSubmit(e)}>
                 <button type="submit">Save new Level</button>
             </form>

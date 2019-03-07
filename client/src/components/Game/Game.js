@@ -1,13 +1,32 @@
 import React, { Component } from 'react';
 import GameController from './GameController';
+import service from '../../api/levelService';
 
 export default class Game extends Component{
     constructor(props){
         super();
-        this.game = new GameController();
+        this.state = {
+            levelId: undefined,
+            totalGame:[],
+            game : new GameController()
+        };
+        
+
     }
     
     componentDidMount () {
+        this.setState({
+            ...this.state,
+            levelId: this.props.match.params.id 
+        },()=>{
+            service.getLevel(this.state.levelId)
+            .then(level => {
+                this.setState({
+                    ...this.state,
+                    totalGame: level.data
+                })
+            })
+        });
         this.drawCanvas()
     }
 
@@ -25,7 +44,7 @@ export default class Game extends Component{
             canvas.height = window.innerHeight;
         };
 
-        this.game.init(canvas);
+        this.state.game.init(canvas, this.state.totalGame);
             
     }
 

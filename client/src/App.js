@@ -11,6 +11,7 @@ import Signup from './components/Auth/Signup';
 import Login from './components/Auth/Login';
 import Piece from './components/Piece/Piece';
 import LevelCreator from './components/LevelCreator/LevelCreator';
+import LevelList from './components/LevelList/LevelList';
 // import ProjectDetails from './components/projects/ProjectDetails';
 
 
@@ -71,11 +72,14 @@ class App extends Component {
             <Switch>
               <Route path='/generate' component={() => <LevelCreator loggedInUser={this.state.loggedInUser} />}/>
               <Route path='/piece' component={() => <Piece loggedInUser={this.state.loggedInUser} />}/>
+              <Route path='/levelList' component={() => <LevelList loggedInUser={this.state.loggedInUser} />}/>
+              <Route exact path="/game/:id" component={Game} />            
             </Switch>
           </header>
           <div>
-            <Link to='/generate'>Create New Level</Link>
-            <Link to='/piece'>Add new Piece</Link>
+            <Link to='/generate'> Create New Level </Link>
+            <Link to='/piece'> Add new Piece </Link>
+            <Link to='/levelList'> Level List </Link>
           </div>
           
         </div>

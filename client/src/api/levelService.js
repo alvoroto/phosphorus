@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const service = axios.create({
   
-  baseURL: `${process.env.PUBLIC_URL}/level`,
+  baseURL: `${process.env.REACT_APP_API_URL}/level`,
   // withCredentials: true // => you might need this when having the users in the app 
 });
 
@@ -29,6 +29,18 @@ export default {
 
   saveNewLevel (level) {
     return service.post('/save', level)
+      .then(res => res.data)
+      .catch(errorHandler);
+  },
+
+  getLevel (id) {
+    return service.get(`/${id}`)
+      .then(res => res.data)
+      .catch(errorHandler);
+  },
+
+  getLevelList() {
+    return service.get('/list')
       .then(res => res.data)
       .catch(errorHandler);
   },
