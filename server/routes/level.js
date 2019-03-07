@@ -10,19 +10,16 @@ const User = require('../models/User');
 const passport = require('passport');
 
 router.post('/save', (req,res,next) => {
-  console.log("-------- "+req.body)
-  req.body.level.creator = req.user._id
-
-  Level.findByIdAndUpdate(req.body._id, req.body.level)
+  Level.findByIdAndUpdate(req.body.id, req.body)
   .then(level => {
     if(!level){
-      Level.create(req.body.level)
-      .then(xperience => {
-        User.findById(req.user._id).populate("levels")
+      Level.create(req.body)
+      .then(newLevel => {
+        User.findById(req.body.creator).populate("levels")
         .then(user => {
           let arrayLevels = user.levels
           arrayLevels.push(newLevel._id)
-          User.findByIdAndUpdate(req.user._id, {levels:arrayLevels})
+          User.findByIdAndUpdate(req.body.creator, {levels:arrayLevels})
           .then(users => {
             console.log("ok")
           })

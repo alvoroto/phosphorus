@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
+const Piece = require("./Piece")
 
 const platformSchema = new Schema({
     x : Number,

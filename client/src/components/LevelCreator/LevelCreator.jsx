@@ -7,6 +7,7 @@ class LevelCreator extends Component {
         super(props)
         this.state = {
             level:{
+                creator : this.props.loggedInUser._id,
                 platforms : [],
                 collectableItems : [],
                 damageItems : [],
@@ -83,9 +84,9 @@ class LevelCreator extends Component {
                   break;
                 case "PLATFORM":
                     let newPlatform = { 
-                        img:this.state.selectedPiece.src ,
-                        x: e.target.getAttribute("column"),
-                        y: e.target.getAttribute("row"),
+                        piece:this.state.selectedPiece._id ,
+                        x: Number(e.target.getAttribute("column")),
+                        y: Number(e.target.getAttribute("row")),
                         w: 1,
                         h: 1
                     }
@@ -101,9 +102,9 @@ class LevelCreator extends Component {
                   break;
                 case "FRONT":
                     let newFrontImage = { 
-                        img:this.state.selectedPiece.src ,
-                        x: e.target.getAttribute("column"),
-                        y: e.target.getAttribute("row"),
+                        piece:this.state.selectedPiece._id ,
+                        x: Number(e.target.getAttribute("column")),
+                        y: Number(e.target.getAttribute("row")),
                         w: 1,
                         h: 1
                     }
@@ -120,9 +121,9 @@ class LevelCreator extends Component {
 
                 case "IMG":
                     let newBackImage = { 
-                        img:this.state.selectedPiece.src ,
-                        x: e.target.getAttribute("column"),
-                        y: e.target.getAttribute("row"),
+                        piece:this.state.selectedPiece._id ,
+                        x: Number(e.target.getAttribute("column")),
+                        y: Number(e.target.getAttribute("row")),
                         w: 1,
                         h: 1
                     }
@@ -139,9 +140,9 @@ class LevelCreator extends Component {
 
                 case "PLAYER":
                     let newPlayer = { 
-                        img:this.state.selectedPiece.src ,
-                        x: e.target.getAttribute("column"),
-                        y: e.target.getAttribute("row"),
+                        piece:this.state.selectedPiece._id ,
+                        x: Number(e.target.getAttribute("column")),
+                        y: Number(e.target.getAttribute("row")),
                         w: 1,
                         h: 1
                     }
@@ -170,7 +171,7 @@ class LevelCreator extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-
+        console.log(this.state.level);
         service.saveNewLevel(this.state.level)
         .then(res => {
             console.log('added: ', res);

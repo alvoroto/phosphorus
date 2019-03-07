@@ -1,28 +1,66 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
+const User = require("./User")
+const Platform = require("./Platform")
+const Item = require("./Item")
+const Images = require("./Images")
+const Background = require("./Background")
+const Piece = require("./Piece")
 
 const levelSchema = new Schema({
     name: String,
     creator: {type: Schema.Types.ObjectId, ref: 'User'},
     platforms:[
-        {type: Schema.Types.ObjectId, ref: 'Platform'},
+        { 
+            x : Number,
+            y : Number,
+            isDashBreakable : Boolean,
+            isDownBreakable : Boolean,
+            piece: {type: Schema.Types.ObjectId, ref: 'Piece'}
+        }
     ],
     collectableItems:[
-        {type: Schema.Types.ObjectId, ref: 'Item'},
+        {
+            x : Number,
+            y : Number,
+            damage : String,
+            piece: {type: Schema.Types.ObjectId, ref: 'Piece'}
+        }
     ],
     damageItems:[
-        {type: Schema.Types.ObjectId, ref: 'Item'},
+        {
+            x : Number,
+            y : Number,
+            damage : String,
+            piece: {type: Schema.Types.ObjectId, ref: 'Piece'}
+        }
     ],
     powerItems:[
-        {type: Schema.Types.ObjectId, ref: 'Item'},
+        {
+            x : Number,
+            y : Number,
+            damage : String,
+            piece: {type: Schema.Types.ObjectId, ref: 'Piece'}
+        }
     ],
     frontImages:[
-        {type: Schema.Types.ObjectId, ref: 'Images'},
+        { 
+            x : Number,
+            y : Number,
+            piece: {type: Schema.Types.ObjectId, ref: 'Piece'}
+        },
     ],
     backImages:[
-        {type: Schema.Types.ObjectId, ref: 'Images'},
+        { 
+            x : Number,
+            y : Number,
+            piece: {type: Schema.Types.ObjectId, ref: 'Piece'}
+        },
     ],
-    background: {type: Schema.Types.ObjectId, ref: 'Background'},
+    background: { 
+        x : Number,
+        y : Number,
+    },
     playerX: Number,
     playerY: Number
 }, {

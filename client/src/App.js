@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Game from './components/Game/Game';
 // import ProjectList from './components/projects/ProjectList';
 import AuthService from './components/AuthService/authService';
@@ -67,9 +68,16 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
-            <Piece></Piece>
-            <LevelCreator></LevelCreator>
+            <Switch>
+              <Route path='/generate' component={() => <LevelCreator loggedInUser={this.state.loggedInUser} />}/>
+              <Route path='/piece' component={() => <Piece loggedInUser={this.state.loggedInUser} />}/>
+            </Switch>
           </header>
+          <div>
+            <Link to='/generate'>Create New Level</Link>
+            <Link to='/piece'>Add new Piece</Link>
+          </div>
+          
         </div>
       );
     } else {
