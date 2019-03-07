@@ -10,6 +10,7 @@ const User = require('../models/User');
 const passport = require('passport');
 
 router.post('/save', (req,res,next) => {
+  console.log("-------- "+req.body)
   req.body.level.creator = req.user._id
 
   Level.findByIdAndUpdate(req.body._id, req.body.level)

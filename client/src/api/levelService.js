@@ -24,6 +24,12 @@ export default {
         }})
       .then(res => res.data)
       .catch(errorHandler);
-  }
+  },
+
+  saveNewLevel (level) {
+    return service.post('/save', level)
+      .then(res => res.data)
+      .catch(errorHandler);
+  },
 }
 

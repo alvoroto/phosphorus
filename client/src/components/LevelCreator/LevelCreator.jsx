@@ -7,6 +7,15 @@ class LevelCreator extends Component {
         super(props)
         this.state = {
             level:{
+                platforms : [],
+                collectableItems : [],
+                damageItems : [],
+                powerItems : [],
+                frontImages:[],
+                backImages:[],
+                background : "",
+                playerX : 0,
+                playerY : 0
             },
             type: "",
             pieces:[],
@@ -41,15 +50,135 @@ class LevelCreator extends Component {
     }
 
     mouseEnter(e) {
-        e.target.style.backgroundImage = `url(${this.state.selectedPiece.src})`;
+        e.target.style.backgroundImage += `url(${this.state.selectedPiece.src})`;
         e.target.style.backgroundSize = "cover";
         e.target.style.backgroundRepeat = "no-repeat";
         e.target.style.backgroundPosition = "center center";
     }
     
     mouseLeave(e) {
-        e.target.style.backgroundImage = ``
+        if(!e.target.isSelected){
+            e.target.style.backgroundImage = ``
+        }
     }
+
+    mouseClick(e) {
+        if(this.state.selectedPiece.type){
+            e.target.isSelected=true
+            e.target.style.backgroundImage = `url(${this.state.selectedPiece.src})`;
+            console.log(this.state)
+            switch(this.state.selectedPiece.type) {
+                case "BACK":
+                    this.setState({
+                        ...this.state,
+                        level:{
+                            ...this.state.level,
+                            background:{
+                                ...this.state.level.background,
+                                src:this.state.selectedPiece.src
+                            }
+                        },
+                    });
+
+                  break;
+                case "PLATFORM":
+                    let newPlatform = { 
+                        img:this.state.selectedPiece.src ,
+                        x: e.target.getAttribute("column"),
+                        y: e.target.getAttribute("row"),
+                        w: 1,
+                        h: 1
+                    }
+                    let newPlatforms = [...this.state.level.platforms]
+                    newPlatforms.push(newPlatform)
+                    this.setState({
+                        ...this.state,
+                        level:{
+                            ...this.state.level,
+                            platforms:newPlatforms
+                        }
+                    });
+                  break;
+                case "FRONT":
+                    let newFrontImage = { 
+                        img:this.state.selectedPiece.src ,
+                        x: e.target.getAttribute("column"),
+                        y: e.target.getAttribute("row"),
+                        w: 1,
+                        h: 1
+                    }
+                    let newFrontImages = [...this.state.level.frontImages]
+                    newFrontImages.push(newFrontImage)
+                    this.setState({
+                        ...this.state,
+                        level:{
+                            ...this.state.level,
+                            frontImages:newFrontImages
+                        }
+                    });
+                  break;
+
+                case "IMG":
+                    let newBackImage = { 
+                        img:this.state.selectedPiece.src ,
+                        x: e.target.getAttribute("column"),
+                        y: e.target.getAttribute("row"),
+                        w: 1,
+                        h: 1
+                    }
+                    let newBackImages = [...this.state.level.backImages]
+                    newBackImages.push(newBackImage)
+                    this.setState({
+                        ...this.state,
+                        level:{
+                            ...this.state.level,
+                            backImages:newBackImages
+                        }
+                    });
+                  break;
+
+                case "PLAYER":
+                    let newPlayer = { 
+                        img:this.state.selectedPiece.src ,
+                        x: e.target.getAttribute("column"),
+                        y: e.target.getAttribute("row"),
+                        w: 1,
+                        h: 1
+                    }
+                    this.setState({
+                        ...this.state,
+                        level:{
+                            ...this.state.level,
+                            player:newPlayer
+                        }
+                    });
+                  break;
+                case "COLITEM":
+                  // code block
+                  break;
+                case "DAMITEM":
+                  // code block
+                  break;
+                case "POWITEM":
+                  // code block
+                  break;
+                default:
+                  // code block
+              }
+        }
+    }
+
+    handleSubmit = e => {
+        e.preventDefault();
+
+        service.saveNewLevel(this.state.level)
+        .then(res => {
+            console.log('added: ', res);
+        })
+        .catch(err => {
+            console.log("Error while adding the thing: ", err);
+        });
+    }  
 
     render() {
         let resArrX=[]
@@ -66,8 +195,11 @@ class LevelCreator extends Component {
         for(var i=arrH-1; i>=0; i--){
             resArrY=[]
             for(var j=0; j<arrW; j++){
-                resArrY.push(<div key={i+"-"+j} className="cell" row={i} column={j} style={cellStyle}
-                onMouseEnter={e=>this.mouseEnter(e)} onMouseLeave={e => this.mouseLeave(e)}></div>)
+                resArrY.push(
+                <div key={i+"-"+j} className="cell" row={i} column={j}  isSelected={false} style={cellStyle}
+                onMouseEnter={e=>this.mouseEnter(e)} onMouseLeave={e => this.mouseLeave(e)}
+                onClick={e=>this.mouseClick(e)}>
+                </div>)
             }
             resArrX.push(resArrY)
         }
@@ -88,13 +220,18 @@ class LevelCreator extends Component {
 
         return (
           <div className="LevelCreator" id="LevelCreator">
+            <form onSubmit={e => this.handleSubmit(e)}>
+                <button type="submit">Save new Level</button>
+            </form>
              <select name="type" onChange={ e => this.handleSelectChange(e)}>
                 <option value="BACK">Background</option>
                 <option value="PLATFORM">Platform</option>
-                <option value="FRONT">Front</option>
-                <option value="IMG">Image</option>
+                <option value="FRONT">Front Image</option>
+                <option value="IMG">Back Image</option>
                 <option value="PLAYER">Player</option>
-                <option value="ITEM">Item</option>
+                <option value="COLITEM">Colectable Item</option>
+                <option value="DAMITEM">Damage Item</option>
+                <option value="POWITEM">Power Item</option>
             </select>
             <div>
                 <ul>{piecesList}</ul>

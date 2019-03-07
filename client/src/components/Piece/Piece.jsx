@@ -79,10 +79,13 @@ class Piece extends Component {
                 <select name="type" onChange={ e => this.handleChange(e)}>
                     <option value="BACK">Background</option>
                     <option value="PLATFORM">Platform</option>
-                    <option value="FRONT">Front</option>
-                    <option value="IMG">Image</option>
+                    <option value="FRONT">Front Image</option>
+                    <option value="IMG">Back Image</option>
                     <option value="PLAYER">Player</option>
-                    <option value="ITEM">Item</option>
+                    <option value="COLITEM">Colectable Item</option>
+                    <option value="DAMITEM">Damage Item</option>
+                    <option value="POWITEM">Power Item</option>
+
                 </select>
                 <input 
                     type="file" 
