@@ -21,17 +21,18 @@ export default class Game extends Component{
         },()=>{
             service.getLevel(this.state.levelId)
             .then(level => {
+                let newTotalGame = [...this.state.totalGame]
+                newTotalGame.push(level.data.totalGame)
                 this.setState({
                     ...this.state,
-                    totalGame: level.data
-                })
+                    totalGame: newTotalGame
+                },()=>this.drawCanvas())
             })
         });
-        this.drawCanvas()
     }
 
     componentDidUpdate () {
-        this.drawCanvas()
+       // this.drawCanvas()
     }
 
     drawCanvas () {

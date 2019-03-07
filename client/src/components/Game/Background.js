@@ -1,6 +1,6 @@
 export default class Background {
 
-    constructor(ctx, w, h, src="../../../images/black.png"){
+    constructor(ctx, w, h, src="../../../images/grey.png"){
         this.ctx = ctx;
         this.img = new Image();
         this.img.src = src;

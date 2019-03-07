@@ -71,14 +71,18 @@ router.get('/list', (req, res, next)=>{
     console.log(levels)
     res.status(200).json({data:{levels}})
   })
+  .catch(err => res.status(500).json({data: err}));
 });
 
 router.get('/:id', (req, res, next)=>{
   Level.findById(req.params.id)
-      .populate("creator","platforms.piece","collectableItems.piece","damageItems.piece","powerItems.piece","frontImages.piece","backImages.piece")
-  .then(xperience => {
-
+  .populate([{path:'creator'}, {path:'platforms.piece'}, {path:'collectableItems.piece'}, 
+    {path:'damageItems.piece'}, {path:'powerItems.piece'}, {path:'frontImages.piece'}, 
+    {path:'backImages.piece'}])
+  .then(totalGame => {
+    res.status(200).json({data:{totalGame}})
   })
+  .catch(err => res.status(500).json({data: err}));
 })
 
 
