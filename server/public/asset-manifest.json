@@ -1,14 +1,14 @@
 {
-  "main.css": "/static/css/main.74b9c5a3.chunk.css",
-  "main.js": "/static/js/main.5b308b80.chunk.js",
-  "main.js.map": "/static/js/main.5b308b80.chunk.js.map",
-  "runtime~main.js": "/static/js/runtime~main.fdfcfda2.js",
-  "runtime~main.js.map": "/static/js/runtime~main.fdfcfda2.js.map",
-  "static/js/2.4bf412fe.chunk.js": "/static/js/2.4bf412fe.chunk.js",
-  "static/js/2.4bf412fe.chunk.js.map": "/static/js/2.4bf412fe.chunk.js.map",
-  "index.html": "/index.html",
-  "precache-manifest.8b0a23b9bfe6a49c75fb6daef0916c18.js": "/precache-manifest.8b0a23b9bfe6a49c75fb6daef0916c18.js",
-  "service-worker.js": "/service-worker.js",
-  "static/css/main.74b9c5a3.chunk.css.map": "/static/css/main.74b9c5a3.chunk.css.map",
-  "static/media/logo.svg": "/static/media/logo.5d5d9eef.svg"
+  "main.css": "https://phosphorus-game.herokuapp.com/static/css/main.1a18c1d8.chunk.css",
+  "main.js": "https://phosphorus-game.herokuapp.com/static/js/main.73158741.chunk.js",
+  "main.js.map": "https://phosphorus-game.herokuapp.com/static/js/main.73158741.chunk.js.map",
+  "runtime~main.js": "https://phosphorus-game.herokuapp.com/static/js/runtime~main.3212591b.js",
+  "runtime~main.js.map": "https://phosphorus-game.herokuapp.com/static/js/runtime~main.3212591b.js.map",
+  "static/js/2.dbd1791a.chunk.js": "https://phosphorus-game.herokuapp.com/static/js/2.dbd1791a.chunk.js",
+  "static/js/2.dbd1791a.chunk.js.map": "https://phosphorus-game.herokuapp.com/static/js/2.dbd1791a.chunk.js.map",
+  "index.html": "https://phosphorus-game.herokuapp.com/index.html",
+  "precache-manifest.7e548bf9f870ca3f1c9f1f44da8b81f7.js": "https://phosphorus-game.herokuapp.com/precache-manifest.7e548bf9f870ca3f1c9f1f44da8b81f7.js",
+  "service-worker.js": "https://phosphorus-game.herokuapp.com/service-worker.js",
+  "static/css/main.1a18c1d8.chunk.css.map": "https://phosphorus-game.herokuapp.com/static/css/main.1a18c1d8.chunk.css.map",
+  "static/media/logo.svg": "https://phosphorus-game.herokuapp.com/static/media/logo.5d5d9eef.svg"
 }
