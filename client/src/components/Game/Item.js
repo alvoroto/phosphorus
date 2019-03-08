@@ -12,8 +12,8 @@ export default class Item {
         this.img.src = src;
         this.damage = damage;
         // número de imágenes diferentes
-        this.img.frames = 4;
-        this.img.framesTo = 3;
+        this.img.frames = 1;
+        this.img.framesTo = 0;
         this.img.framesFrom = 0;
         this.img.frameIndex = 0;
         this.img.framesX = 0;

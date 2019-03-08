@@ -15,7 +15,7 @@ class LevelCreator extends Component {
                 powerItems : [],
                 frontImages:[],
                 backImages:[],
-                background : "",
+                background : {},
                 playerX : 0,
                 playerY : 0
             },
@@ -56,10 +56,23 @@ class LevelCreator extends Component {
     }
 
     handlePieceSelection = (e, item) => { 
-        this.setState({
-            ...this.state,
-            selectedPiece: item 
-        });
+        if(item.type==="BACK"){
+            this.setState({
+                ...this.state,
+                selectedPiece: {},
+                level:{
+                    ...this.state.level,
+                    background:{
+                        src:item.src
+                    } 
+                },
+            });
+        }else{
+            this.setState({
+                ...this.state,
+                selectedPiece: item 
+            });
+        }
     }
 
     mouseEnter(e) {
@@ -81,19 +94,6 @@ class LevelCreator extends Component {
             e.target.style.backgroundImage = `url(${this.state.selectedPiece.src})`;
             console.log(this.state)
             switch(this.state.selectedPiece.type) {
-                case "BACK":
-                    this.setState({
-                        ...this.state,
-                        level:{
-                            ...this.state.level,
-                            background:{
-                                ...this.state.level.background,
-                                src:this.state.selectedPiece.src
-                            }
-                        },
-                    });
-
-                  break;
                 case "PLATFORM":
                     let newPlatform = { 
                         piece:this.state.selectedPiece._id ,
@@ -167,8 +167,24 @@ class LevelCreator extends Component {
                     });
                   break;
                 case "COLITEM":
-                  // code block
-                  break;
+                    let newColItem= { 
+                        piece:this.state.selectedPiece._id ,
+                        x: Number(e.target.getAttribute("column")),
+                        y: Number(e.target.getAttribute("row")),
+                        w: 1,
+                        h: 1,
+                        isActive: true
+                    }
+                    let newColItems = [...this.state.level.collectableItems]
+                    newColItems.push(newColItem)
+                    this.setState({
+                        ...this.state,
+                        level:{
+                            ...this.state.level,
+                            collectableItems:newColItems
+                        }
+                    });
+                    break;
                 case "DAMITEM":
                   // code block
                   break;
@@ -205,7 +221,7 @@ class LevelCreator extends Component {
             border:'1px solid grey',           
         }
 
-        for(var i=arrH-1; i>=0; i--){
+        for(var i=0; i<arrH; i++){
             resArrY=[]
             for(var j=0; j<arrW; j++){
                 resArrY.push(
@@ -252,10 +268,12 @@ class LevelCreator extends Component {
                 <option value="DAMITEM">Damage Item</option>
                 <option value="POWITEM">Power Item</option>
             </select>
-            <div>
-                <ul>{piecesList}</ul>
+            <div className="create-board">
+                <div className="container" style={divStyle}>{resArrX}</div>
+                <div className="pieces-container">
+                    <nav><ul>{piecesList}</ul></nav>
+                </div>
             </div>
-            <div className="container" style={divStyle}>{resArrX}</div>
           </div>
         );
     }

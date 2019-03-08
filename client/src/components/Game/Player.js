@@ -9,10 +9,10 @@ export default function Player(game) {
     this.ly = this.y;
   
     this.img = new Image();
-    this.img.src = '../../../images/greenBall.png';
+    this.img.src = '../../../images/marioRun.png';
 
     // número de imágenes diferentes
-    this.img.frames = 12;
+    this.img.frames = 8;
     this.img.framesTo = 0;
     this.img.framesFrom = 0;
     this.img.frameIndex = 0;
@@ -24,8 +24,8 @@ export default function Player(game) {
 
     
     // medidas de la imagen a representar en el canvas
-    this.w = 27;
-    this.h = 44;
+    this.w = 50;
+    this.h = 50;
 
     //velocidad
     this.vxInitial = 5;
@@ -186,7 +186,7 @@ Player.prototype.move = function(){
         if(this.vy >= this.breakDownVelocity){
             this.setAnimationParams(11,11)
         }else{
-            this.setAnimationParams(8,8)
+            this.setAnimationParams(4,4)
         }
     }
     this.animateRun();

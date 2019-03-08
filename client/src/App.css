@@ -1,29 +1,60 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 
-.App {
-  text-align: center;
+@font-face {
+  font-family: "My Custom Font";
+  src: url('/fonts/AtariClassic-Regular.ttf');
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+body{
+  font-family: "My Custom Font", Verdana, Tahoma;
+  text-align: center;
+  background-color: white;
+  color: black;
+}
+
+.App {
+  font-family: "My Custom Font", Verdana, Tahoma;
+  text-align: center;
+  background-color: white;
+  color: black;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: white;
+  max-height: 40vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  padding-top: 10vh;
 }
 
-.App-link {
-  color: #61dafb;
+.link{
+  textDecoration: 'none';
+  color: black;
 }
+
+*:focus {
+  outline: none;
+}
+
+input {
+  background-color: transparent;
+  border: 0px solid;
+  color: #00bb00;
+  font-family: "My Custom Font", Verdana, Tahoma;
+  font-size: calc(10px + 2vmin);
+}
+
+li{
+  list-style-type: none;
+}
+
+.nav-style{
+  height: 100px;
+}
+
 
 @keyframes App-logo-spin {
   from {

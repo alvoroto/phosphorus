@@ -1,0 +1,12 @@
+.create-board{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.LevelCreator nav ul{
+    height:50vh;
+}
+.LevelCreator nav ul{
+    overflow:hidden; 
+    overflow-y:scroll;
+}

@@ -14,6 +14,8 @@ const levelSchema = new Schema({
         { 
             x : Number,
             y : Number,
+            w : Number,
+            h : Number,
             isDashBreakable : Boolean,
             isDownBreakable : Boolean,
             piece: {type: Schema.Types.ObjectId, ref: 'Piece'}
@@ -23,7 +25,10 @@ const levelSchema = new Schema({
         {
             x : Number,
             y : Number,
+            w : Number,
+            h : Number,
             damage : String,
+            isActive : Boolean,
             piece: {type: Schema.Types.ObjectId, ref: 'Piece'}
         }
     ],
@@ -31,7 +36,10 @@ const levelSchema = new Schema({
         {
             x : Number,
             y : Number,
+            w : Number,
+            h : Number,
             damage : String,
+            isActive : Boolean,
             piece: {type: Schema.Types.ObjectId, ref: 'Piece'}
         }
     ],
@@ -39,7 +47,10 @@ const levelSchema = new Schema({
         {
             x : Number,
             y : Number,
+            w : Number,
+            h : Number,
             damage : String,
+            isActive : Boolean,
             piece: {type: Schema.Types.ObjectId, ref: 'Piece'}
         }
     ],
@@ -47,6 +58,8 @@ const levelSchema = new Schema({
         { 
             x : Number,
             y : Number,
+            w : Number,
+            h : Number,
             piece: {type: Schema.Types.ObjectId, ref: 'Piece'}
         },
     ],
@@ -54,10 +67,13 @@ const levelSchema = new Schema({
         { 
             x : Number,
             y : Number,
+            w : Number,
+            h : Number,
             piece: {type: Schema.Types.ObjectId, ref: 'Piece'}
         },
     ],
     background: { 
+        src: String,
         x : Number,
         y : Number,
     },

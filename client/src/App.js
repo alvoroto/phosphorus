@@ -69,17 +69,18 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
+            <Link to='/generate' className="link" style={{ textDecoration: 'none' }}> Create New Level </Link>
+            <Link to='/piece' className="link" style={{ textDecoration: 'none' }}> Add new Piece </Link>
+            <Link to='/levelList' className="link" style={{ textDecoration: 'none' }}> Level List </Link>
+          </header>
+          <div>
+            
             <Switch>
               <Route path='/generate' component={() => <LevelCreator loggedInUser={this.state.loggedInUser} />}/>
               <Route path='/piece' component={() => <Piece loggedInUser={this.state.loggedInUser} />}/>
               <Route path='/levelList' component={() => <LevelList loggedInUser={this.state.loggedInUser} />}/>
               <Route exact path="/game/:id" component={Game} />            
             </Switch>
-          </header>
-          <div>
-            <Link to='/generate'> Create New Level </Link>
-            <Link to='/piece'> Add new Piece </Link>
-            <Link to='/levelList'> Level List </Link>
           </div>
           
         </div>
@@ -91,6 +92,7 @@ class App extends Component {
           <header className="App-header">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
             <Switch>
+              <Route path='/levelList' component={() => <LevelList loggedInUser={this.state.loggedInUser} />}/>
               <Route exact path='/signup' render={() => <Signup getUser={this.getUser}/>}/>
               <Route exact path='/login' render={() => <Login getUser={this.getUser}/>}/>
             </Switch>

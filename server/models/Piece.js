@@ -4,7 +4,7 @@ const Schema   = mongoose.Schema;
 const pieceSchema = new Schema({
     name: String,
     src : String,
-    type: {type: String, enum: ['BACK', 'FRONT', 'IMG', 'PLATFORM','ITEM', 'PLAYER']},
+    type: {type: String, enum: ['BACK', 'FRONT', 'IMG', 'PLATFORM','ITEM', 'PLAYER','COLITEM','DAMITEM','POWITEM']},
     w : Number,
     h : Number,
     frames : Number,
