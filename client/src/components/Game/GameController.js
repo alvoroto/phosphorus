@@ -326,8 +326,8 @@ export default class GameController {
             nivel.background = new Background(this.ctx, this.canvas.width, this.canvas.height, this.totalGame[this.currentLevel].background.src);
 
             //player
-            nivel.playerX = this.totalGame[this.currentLevel].player.x;
-            nivel.playerY = this.totalGame[this.currentLevel].player.y;
+            nivel.playerX = this.totalGame[this.currentLevel].playerX;
+            nivel.playerY = this.totalGame[this.currentLevel].playerY;
 
 
             this.levels[this.currentLevel]=nivel;

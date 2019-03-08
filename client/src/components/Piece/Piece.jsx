@@ -79,7 +79,7 @@ class Piece extends Component {
                 </div>
                 <div className="form-row">
                     <label>Type</label>
-                    <select name="type" onChange={ e => this.handleChange(e)}>
+                    <select name="type" className="retrobutton" onChange={ e => this.handleChange(e)}>
                         <option value="BACK">Background</option>
                         <option value="PLATFORM">Platform</option>
                         <option value="FRONT">Front Image</option>
@@ -93,12 +93,14 @@ class Piece extends Component {
                 </div>
                 <div className="form-row">
                 <input 
+                    className="retrobutton"
                     type="file" 
                     onChange={(e) => this.handleFileUpload(e)} /> 
                 </div>
                 <div className="form-row">
                     <label>Is animated</label>
                     <input 
+                        className="retrobutton"
                         type="checkbox" 
                         name="animated" 
                         onChange={ e => this.handleChecked(e)} />
@@ -154,7 +156,7 @@ class Piece extends Component {
                         onChange={ e => this.handleChange(e)} /> */}
                 </div>
                 <div className="form-row">
-                    <button type="submit">Save new Piece</button>
+                    <button type="submit" className="retrobutton">Save new Piece</button>
                 </div>
             </form>
           </div>
