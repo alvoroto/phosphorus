@@ -6,16 +6,35 @@
 .pieces-container{
     max-height: 360px;
     height: 360px;
+    width: 160px;
 }
+
+.pieces-container li {
+    margin-bottom: 20px;
+}
+
 .LevelCreator nav ul{
     overflow:hidden; 
-    overflow-y:scroll;
+    overflow-y: auto;
+    height: 350px;
 }
 
 .container{
     margin-left: 30px;
     margin-right: 30px
 }
+
+/* sass notation with dani!!
+%interactiveElemtn {
+    cursor: pointer;
+    color: white;
+
+    &:hover {
+        color: red;
+        background: white;
+        transition: all 0.5s;
+    } 
+}*/
 
 .itemImg{
     width: 50px;
@@ -24,4 +43,23 @@
 .itemDiv{
     display: flex;
     flex-direction: column;
+    cursor: pointer;
+}
+
+.itemDiv.active {
+    background: black;
+    color: white;
+}
+
+.itemDiv .itemImg {
+    align-self: center;
+    margin-bottom: 10px;
+}
+
+.cell {
+    border: 1px dashed rgba(100, 100, 100, 0.7);
+    opacity: 0.5;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }

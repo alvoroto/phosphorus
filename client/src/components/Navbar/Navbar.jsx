@@ -22,11 +22,11 @@ class Navbar extends Component {
     if (this.state.loggedInUser) {
       return (
         <nav className="nav-style">
+          <h4>{this.state.loggedInUser.username} let's do Games!</h4>
+          
           <ul>
             <li><a className="logout" onClick={this.handleLogout}>Logout</a></li>
           </ul>
-
-          <h4>{this.state.loggedInUser.username} let's do Games!</h4>
         </nav>
       )
     } else {

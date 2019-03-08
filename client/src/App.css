@@ -41,9 +41,20 @@ body{
 }
 
 
-.menu .link{
+.menu .link, .retrobutton, .levelName{
+  font-family: "My Custom Font", Verdana, Tahoma;
   border: 5px solid black;
   font-size: calc(15px + 1vmin);
+  cursor: pointer;
+  transition: all 0.25s;
+  background: white;
+  color: black;
+}
+
+.menu .link:hover, .retrobutton:hover, .levelName:hover{
+  transition: all 0.25s;
+  background: black;
+  color: white;
 }
 
 .Piece{
@@ -86,10 +97,26 @@ li{
 
 .nav-style{
   height: 60px;
+  flex-direction: row;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0 10px;
 }
 
 .logout{
   font-size: calc(4px + 1vmin);
+  cursor: pointer;
+  padding: 10px;
+  transition: all 0.25s;
+  background: white;
+  color: black;
+}
+
+.logout:hover{
+  background: black;
+  color: white;
+  transition: all 0.5s;
 }
 
 .pieceForm{
@@ -107,6 +134,15 @@ li{
 
 .Game{
   margin-top: 30px;
+}
+
+input[type="text"]{
+  border:5px solid black;
+  padding: 0px 5px;
+}
+
+label {
+  font-size: 18px;
 }
 
 @keyframes App-logo-spin {

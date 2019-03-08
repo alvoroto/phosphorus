@@ -189,8 +189,24 @@ class LevelCreator extends Component {
                     });
                     break;
                 case "DAMITEM":
-                  // code block
-                  break;
+                    let newDamItem= { 
+                        piece:this.state.selectedPiece._id ,
+                        x: Number(e.target.getAttribute("column")),
+                        y: Number(e.target.getAttribute("row")),
+                        w: 1,
+                        h: 1,
+                        isActive: true
+                    }
+                    let newDamItems = [...this.state.level.damageItems]
+                    newDamItems.push(newDamItem)
+                    this.setState({
+                        ...this.state,
+                        level:{
+                            ...this.state.level,
+                            damageItems:newDamItems
+                        }
+                    });
+                    break;
                 case "POWITEM":
                   // code block
                   break;
@@ -219,16 +235,11 @@ class LevelCreator extends Component {
         const arrW=24
         const arrH=12
 
-        var cellStyle = {
-            border:'1px solid grey', 
-            opacity: '0.5'        
-        }
-
         for(var i=0; i<arrH; i++){
             resArrY=[]
             for(var j=0; j<arrW; j++){
                 resArrY.push(
-                <div key={i+"-"+j} className="cell" row={i} column={j}  selected={false} style={cellStyle}
+                <div key={i+"-"+j} className="cell" row={i} column={j}  selected={false} 
                 onMouseEnter={e=>this.mouseEnter(e)} onMouseLeave={e => this.mouseLeave(e)}
                 onClick={e=>this.mouseClick(e)}>
                 </div>)
@@ -248,13 +259,22 @@ class LevelCreator extends Component {
         }
 
         let piecesList = this.state.pieces.map((item, i)=>{
+
+            var myClassName = "itemDiv"
+
+            if (item.name === this.state.selectedPiece.name) {
+                myClassName = "itemDiv active"
+            }
+
             return (
-            <li key={i}><div className="itemDiv"><img className="itemImg" src={item.src} onClick={e => this.handlePieceSelection(e, item)} alt={item.name}/><span>{item.name}</span></div></li>
+            <li key={i}><div className={myClassName} ><img className="itemImg" src={item.src} onClick={e => this.handlePieceSelection(e, item)} alt={item.name}/><p>{item.name}</p></div></li>
             )
         })
 
         return (
+            
           <div className="LevelCreator" id="LevelCreator">
+          
            <form className="levelForm" onSubmit={e => this.handleSubmit(e)}>
                 <div className="form-row">
                     <label>Level Name</label>
@@ -265,7 +285,7 @@ class LevelCreator extends Component {
                         onChange={ e => this.handleLevelChange(e)} />
                 </div>
                 <div className="form-row">
-                    <select name="type" onChange={ e => this.handleSelectChange(e)}>
+                    <select name="type" class="retrobutton" onChange={ e => this.handleSelectChange(e)}>
                         <option value="PLAYER">Player</option>
                         <option value="BACK">Background</option>
                         <option value="PLATFORM">Platform</option>
@@ -277,7 +297,7 @@ class LevelCreator extends Component {
                     </select>
                 </div>
                 <div className="form-row">
-                    <button type="submit">Save new Level</button>
+                    <button type="submit" class="retrobutton">Save new Level</button>
                 </div>
             </form>
             <div className="create-board">
