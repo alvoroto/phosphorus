@@ -21,7 +21,8 @@ class LevelCreator extends Component {
             },
             type: "",
             pieces:[],
-            selectedPiece:{}
+            selectedPiece:{},
+            backImage:""
         };
     }
 
@@ -60,6 +61,7 @@ class LevelCreator extends Component {
             this.setState({
                 ...this.state,
                 selectedPiece: {},
+                backImage:item.src,
                 level:{
                     ...this.state.level,
                     background:{
@@ -92,6 +94,7 @@ class LevelCreator extends Component {
         if(this.state.selectedPiece.type){
             e.target.selected=true
             e.target.style.backgroundImage = `url(${this.state.selectedPiece.src})`;
+            e.target.style.opacity = "1";
             console.log(this.state)
             switch(this.state.selectedPiece.type) {
                 case "PLATFORM":
@@ -217,8 +220,8 @@ class LevelCreator extends Component {
         const arrH=12
 
         var cellStyle = {
-            backgroundColor: 'beige',
-            border:'1px solid grey',           
+            border:'1px solid grey', 
+            opacity: '0.5'        
         }
 
         for(var i=0; i<arrH; i++){
@@ -238,7 +241,10 @@ class LevelCreator extends Component {
             gridTemplateColumns: `repeat(${arrW},1fr)`,
             gridTemplateRows: `repeat(2fr)`,
             width:'70vw',
-            height:'50vh'
+            height:'50vh',
+            backgroundImage: `url(${this.state.backImage})`,
+            backgroundSize : "100% 100%",
+            backgroundRepeat : "no-repeat"
         }
 
         let piecesList = this.state.pieces.map((item, i)=>{

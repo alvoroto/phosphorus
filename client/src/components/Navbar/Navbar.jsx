@@ -23,10 +23,10 @@ class Navbar extends Component {
       return (
         <nav className="nav-style">
           <ul>
-            <li><a onClick={this.handleLogout}>Logout</a></li>
+            <li><a className="logout" onClick={this.handleLogout}>Logout</a></li>
           </ul>
 
-          <h2>Welcome, {this.state.loggedInUser.username}</h2>
+          <h2>{this.state.loggedInUser.username} let's do Games!</h2>
         </nav>
       )
     } else {

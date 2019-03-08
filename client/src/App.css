@@ -42,7 +42,7 @@ body{
 input {
   background-color: transparent;
   border: 0px solid;
-  color: #00bb00;
+  color: black;
   font-family: "My Custom Font", Verdana, Tahoma;
   font-size: calc(10px + 2vmin);
 }
@@ -53,6 +53,10 @@ li{
 
 .nav-style{
   height: 100px;
+}
+
+.logout{
+  font-size: calc(4px + 2vmin);
 }
 
 
