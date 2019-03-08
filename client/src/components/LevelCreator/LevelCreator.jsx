@@ -240,8 +240,8 @@ class LevelCreator extends Component {
             display: 'grid',
             gridTemplateColumns: `repeat(${arrW},1fr)`,
             gridTemplateRows: `repeat(2fr)`,
-            width:'70vw',
-            height:'50vh',
+            width:'720px',
+            height:'360px',
             backgroundImage: `url(${this.state.backImage})`,
             backgroundSize : "100% 100%",
             backgroundRepeat : "no-repeat"
@@ -249,31 +249,37 @@ class LevelCreator extends Component {
 
         let piecesList = this.state.pieces.map((item, i)=>{
             return (
-            <li key={i}><div><span>{item.name}</span><img src={item.src} onClick={e => this.handlePieceSelection(e, item)} alt={item.name}/></div></li>
+            <li key={i}><div className="itemDiv"><img className="itemImg" src={item.src} onClick={e => this.handlePieceSelection(e, item)} alt={item.name}/><span>{item.name}</span></div></li>
             )
         })
 
         return (
           <div className="LevelCreator" id="LevelCreator">
-            <label>Level Name</label>
-            <input 
-                type="text" 
-                name="name" 
-                value={ this.state.level.name } 
-                onChange={ e => this.handleLevelChange(e)} />
-            <form onSubmit={e => this.handleSubmit(e)}>
-                <button type="submit">Save new Level</button>
+           <form className="levelForm" onSubmit={e => this.handleSubmit(e)}>
+                <div className="form-row">
+                    <label>Level Name</label>
+                    <input 
+                        type="text" 
+                        name="name" 
+                        value={ this.state.level.name } 
+                        onChange={ e => this.handleLevelChange(e)} />
+                </div>
+                <div className="form-row">
+                    <select name="type" onChange={ e => this.handleSelectChange(e)}>
+                        <option value="PLAYER">Player</option>
+                        <option value="BACK">Background</option>
+                        <option value="PLATFORM">Platform</option>
+                        <option value="FRONT">Front Image</option>
+                        <option value="IMG">Back Image</option>
+                        <option value="COLITEM">Colectable Item</option>
+                        <option value="DAMITEM">Damage Item</option>
+                        <option value="POWITEM">Power Item</option>
+                    </select>
+                </div>
+                <div className="form-row">
+                    <button type="submit">Save new Level</button>
+                </div>
             </form>
-             <select name="type" onChange={ e => this.handleSelectChange(e)}>
-                <option value="BACK">Background</option>
-                <option value="PLATFORM">Platform</option>
-                <option value="FRONT">Front Image</option>
-                <option value="IMG">Back Image</option>
-                <option value="PLAYER">Player</option>
-                <option value="COLITEM">Colectable Item</option>
-                <option value="DAMITEM">Damage Item</option>
-                <option value="POWITEM">Power Item</option>
-            </select>
             <div className="create-board">
                 <div className="container" style={divStyle}>{resArrX}</div>
                 <div className="pieces-container">

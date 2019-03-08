@@ -69,9 +69,11 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
-            <Link to='/generate' className="link" style={{ textDecoration: 'none' }}> Create New Level </Link>
-            <Link to='/piece' className="link" style={{ textDecoration: 'none' }}> Add new Piece </Link>
-            <Link to='/levelList' className="link" style={{ textDecoration: 'none' }}> Level List </Link>
+            <div className="menu">
+              <Link to='/generate' className="link" style={{ textDecoration: 'none' }}> Create New Level </Link>
+              <Link to='/piece' className="link" style={{ textDecoration: 'none' }}> Add new Piece </Link>
+              <Link to='/levelList' className="link" style={{ textDecoration: 'none' }}> Level List </Link>
+            </div>
           </header>
           <div>
             

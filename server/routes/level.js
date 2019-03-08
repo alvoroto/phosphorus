@@ -66,7 +66,7 @@ router.get('/pieces', (req, res, next)=>{
 });
 
 router.get('/list', (req, res, next)=>{
-  Level.find()
+  Level.find().populate("creator")
   .then(levels=>{
     console.log(levels)
     res.status(200).json({data:{levels}})

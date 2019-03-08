@@ -26,13 +26,46 @@ body{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  padding-top: 10vh;
+  font-size: calc(10px + 1vmin);
+  padding-top: 5vh;
+}
+
+.menu{
+ 
 }
 
 .link{
-  textDecoration: 'none';
   color: black;
+  margin: 5px;
+  text-decoration: 'none'
+}
+
+
+.menu .link{
+  border: 5px solid black;
+  font-size: calc(15px + 1vmin);
+}
+
+.Piece{
+  margin-top: 50px;
+}
+
+.LevelList{
+  margin-top: 50px;
+}
+
+.LevelList li{
+  margin-top: 5px;
+  padding: 5px;
+}
+
+.LevelList .levelName{
+  border: 2px solid black;
+  padding: 2px;
+}
+
+.LevelCreator{
+  margin-top: 50px;
 }
 
 *:focus {
@@ -52,13 +85,29 @@ li{
 }
 
 .nav-style{
-  height: 100px;
+  height: 60px;
 }
 
 .logout{
-  font-size: calc(4px + 2vmin);
+  font-size: calc(4px + 1vmin);
 }
 
+.pieceForm{
+  padding: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 50px 50px 50px  ;
+}
+
+.levelForm{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 50px 50px ;
+}
+
+.Game{
+  margin-top: 30px;
+}
 
 @keyframes App-logo-spin {
   from {

@@ -3,10 +3,25 @@
     flex-wrap: wrap;
 }
 
-.LevelCreator nav ul{
-    height:50vh;
+.pieces-container{
+    max-height: 360px;
+    height: 360px;
 }
 .LevelCreator nav ul{
     overflow:hidden; 
     overflow-y:scroll;
+}
+
+.container{
+    margin-left: 30px;
+    margin-right: 30px
+}
+
+.itemImg{
+    width: 50px;
+}
+
+.itemDiv{
+    display: flex;
+    flex-direction: column;
 }

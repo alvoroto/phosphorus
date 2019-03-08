@@ -37,13 +37,13 @@ export default class Game extends Component{
 
     drawCanvas () {
         const canvas = document.getElementById("canvas")
-        canvas.width = window.innerWidth-50;
-        canvas.height = window.innerHeight-50;
+        canvas.width = 900;
+        canvas.height = 450;
 
-        window.onresize = function(event) {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        };
+        // window.onresize = function(event) {
+        //     canvas.width = window.innerWidth;
+        //     canvas.height = window.innerHeight;
+        // };
 
         this.state.game.init(canvas, this.state.totalGame);
             

@@ -66,38 +66,45 @@ class Piece extends Component {
     }  
     render() {
         return (
-          <div>
-            <h2>New Thing</h2>
-            <form onSubmit={e => this.handleSubmit(e)}>
-                <label>Name</label>
-                <input 
-                    type="text" 
-                    name="name" 
-                    value={ this.state.name } 
-                    onChange={ e => this.handleChange(e)} />
-                <label>Type</label>
-                <select name="type" onChange={ e => this.handleChange(e)}>
-                    <option value="BACK">Background</option>
-                    <option value="PLATFORM">Platform</option>
-                    <option value="FRONT">Front Image</option>
-                    <option value="IMG">Back Image</option>
-                    <option value="PLAYER">Player</option>
-                    <option value="COLITEM">Colectable Item</option>
-                    <option value="DAMITEM">Damage Item</option>
-                    <option value="POWITEM">Power Item</option>
+          <div className="Piece">
+            <h2>New Piece</h2>
+            <form className="pieceForm" onSubmit={e => this.handleSubmit(e)}>
+                <div className="form-row">
+                    <label>Name</label>
+                    <input 
+                        type="text" 
+                        name="name" 
+                        value={ this.state.name } 
+                        onChange={ e => this.handleChange(e)} />
+                </div>
+                <div className="form-row">
+                    <label>Type</label>
+                    <select name="type" onChange={ e => this.handleChange(e)}>
+                        <option value="BACK">Background</option>
+                        <option value="PLATFORM">Platform</option>
+                        <option value="FRONT">Front Image</option>
+                        <option value="IMG">Back Image</option>
+                        <option value="PLAYER">Player</option>
+                        <option value="COLITEM">Colectable Item</option>
+                        <option value="DAMITEM">Damage Item</option>
+                        <option value="POWITEM">Power Item</option>
 
-                </select>
+                    </select>
+                </div>
+                <div className="form-row">
                 <input 
                     type="file" 
                     onChange={(e) => this.handleFileUpload(e)} /> 
-
-                <label>Is animated</label>
-                <input 
-                    type="checkbox" 
-                    name="animated" 
-                    onChange={ e => this.handleChecked(e)} />
+                </div>
+                <div className="form-row">
+                    <label>Is animated</label>
+                    <input 
+                        type="checkbox" 
+                        name="animated" 
+                        onChange={ e => this.handleChecked(e)} />
+                </div>
                 <div style={{display: this.state.animated ? '' : 'none' }} >
-                    <label>Frames</label>
+                    {/* <label>Frames</label>
                     <input 
                         type="number" 
                         name="frames" 
@@ -144,9 +151,11 @@ class Piece extends Component {
                         type="text" 
                         name="framesH" 
                         value={ this.state.framesH } 
-                        onChange={ e => this.handleChange(e)} />
+                        onChange={ e => this.handleChange(e)} /> */}
                 </div>
-                <button type="submit">Save new Piece</button>
+                <div className="form-row">
+                    <button type="submit">Save new Piece</button>
+                </div>
             </form>
           </div>
         );

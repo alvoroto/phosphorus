@@ -24,8 +24,8 @@ export default function Player(game) {
 
     
     // medidas de la imagen a representar en el canvas
-    this.w = 50;
-    this.h = 50;
+    this.w = 40;
+    this.h = 35;
 
     //velocidad
     this.vxInitial = 5;

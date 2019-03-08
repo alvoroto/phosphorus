@@ -24,11 +24,13 @@ class LevelList extends Component {
 
     render(){
         let levelList = this.state.levelList.map((item, i)=>{
+            console.log(item)
             return (
                 <Link
+                    style={{ textDecoration: 'none' }}
                     to={`/game/${item._id}`}
                     key={item._id}>
-                        <li key={i}><div><span>{item.name}</span></div></li>
+                        <li key={i} className="link"><div><span className="levelName">{item.name}</span> <span>-by {item.creator.username}-</span></div></li>
                 </Link>
             )
         })
