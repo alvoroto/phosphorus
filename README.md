@@ -43,7 +43,4 @@ Tipos de piezas:
 
 
 
-Los tipos de piezas son los siguientes:
-Background: 
-
 
