@@ -1,7 +1,7 @@
 <h1>PHOSPORUS GAME CREATOR</h1>
 <h2>Proyecto final del Web Dev Bootcamp en Ironhack</h2>
 <h3>Pruebalo en: <a href="https://phosphorus-game.herokuapp.com/">phosphorus-game.herokuapp.co</a><h3>
-<p>
+
 El proyecto se ha realizado para el curso de Web Dev de Ironhack con las siguientes tecnologías:
 - html canvas
 - css
@@ -46,4 +46,4 @@ Tipos de piezas:
 Los tipos de piezas son los siguientes:
 Background: 
 
-</p>
+
